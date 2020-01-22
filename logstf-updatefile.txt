@@ -4,12 +4,12 @@
     {
         "Version"
         {
-            "Latest"    "2.3.1"
+            "Latest"    "2.3.2"
         }
 
-        "Notes" "Changes in 2.3.1:"
-        "Notes" "- Fixed server names getting truncated"
-        "Notes" "- Updated to newest SM version / syntax"
+        "Notes" "Changes in 2.3.2:"
+        "Notes" "- Reverted fix server names getting truncated, see the source file for more info"
+        "Notes" "- added 1 more character into max server hostname length"
     }
 
     "Files"

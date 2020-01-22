@@ -12,7 +12,8 @@ Fixes for various tf2 comp plugins, [originally made by F2](https://www.teamfort
 * compiled on latest sourcemod
 
 #### logstf:
-* Fixed logstf cutting off server hostname for no apparent reason
+~~* Fixed logstf cutting off server hostname for no apparent reason~~ Reverted
+* Added 1 character to max hostname length, until such time as zooob allows longer titles on logs.tf
 * Removed deprecated descriptors for cvars (FCVAR_PLUGIN)
 
 ###### todo: replace morecolors.inc with [color-literals.inc](https://github.com/nosoop/stocksoup/blob/master/color_literals.inc) for less of a memory footprint on servers

@@ -78,6 +78,11 @@ Release notes:
 - updated for newest sourcemod
 - Cleaned up in general
 
+---- 2.3.2 (21/01/2020) ----
+- Reverted "fix" for truncating of hostnames on logs. will reimpliment if zooob ups the character limit for log titles above 40
+- Squeezed room in for 1 extra character in log titles
+- Added comments and clarification to cvars and other misc things
+- Made SLIGHTLY more readable
 
 TODO:
 - Check if midgameupload works for mini-rounds
@@ -98,12 +103,12 @@ TODO:
 #include <updater>
 
 
-#define PLUGIN_VERSION "2.3.1"
+#define PLUGIN_VERSION "2.3.2"
 #define UPDATE_URL      "https://raw.githubusercontent.com/stephanieLGBT/f2-plugins-updated/master/logstf-updatefile.txt"
 
 #define LOG_PATH  "logstf.log"
 #define PLOG_PATH "logstf-partial.log"
-#define LOG_BUFFERSIZE 1024 // I have seen log lines longer than 512
+#define LOG_BUFFERSIZE 768 // I have seen log lines longer than 512
 #define LOG_BUFFERCNT 100
 
 
@@ -126,7 +131,7 @@ new g_iPlayersInMatch;
 new Handle:g_hCvarHostname, Handle:g_hCvarRedTeamName, Handle:g_hCvarBlueTeamName, Handle:g_hCvarLogsDir;
 new Handle:g_hCvarApikey, Handle:g_hCvarTitle, Handle:g_hCvarAutoUpload, Handle:g_hCvarMidGameUpload, Handle:g_hCvarMidGameNotice;
 new String:g_sLastLogURL[128];
-new String:g_sCachedHostname[64], String:g_sCachedRedTeamName[32], String:g_sCachedBluTeamName[32], String:g_sCachedMap[32];
+new String:g_sCachedHostname[23], String:g_sCachedRedTeamName[6], String:g_sCachedBluTeamName[6], String:g_sCachedMap[24];
 new Handle:g_hLogUploaded; // public LogUploaded(bool:success, const String:logid[], const String:url[])
 new Handle:g_hBlockLogLine; // public Action:BlockLogLine(const String:logline[])
 
@@ -166,7 +171,7 @@ public OnPluginStart() {
 
     // Create LogsTF cvars
     g_hCvarApikey           = CreateConVar("logstf_apikey", "", "Your logs.tf API key", FCVAR_PROTECTED);
-    g_hCvarTitle            = CreateConVar("logstf_title", "{server}: {red} vs {blu}", "Title to use on logs.tf");
+    g_hCvarTitle            = CreateConVar("logstf_title", "{server}: {red} v {blu}", "Title to use on logs.tf\n - {server}, {red}, and {blu} are automatically replaced with their real values");
     g_hCvarAutoUpload       = CreateConVar("logstf_autoupload", "2", "Set to 2 to upload logs from all matches. (default)\n - Set to 1 to upload logs from matches with at least 4 players.\n - Set to 0 to disable automatic upload. Admins can still upload logs by typing !ul");
     g_hCvarMidGameUpload    = CreateConVar("logstf_midgameupload", "1", "Set to 0 to upload logs after the match has finished.\n - Set to 1 to upload the logs after each round.");
     g_hCvarMidGameNotice    = CreateConVar("logstf_midgamenotice", "1", "Set to 1 to notice players about midgame logs.\n - Set to 0 to disable it.");
@@ -310,19 +315,19 @@ CacheMatchValues() {
     String_Trim(g_sCachedRedTeamName, g_sCachedRedTeamName, sizeof(g_sCachedRedTeamName));
     GetCurrentMap(g_sCachedMap, sizeof(g_sCachedMap));
 
-    // Remove last word in hostname
-    //new spacepos = -1;
-    //for (new i = strlen(g_sCachedHostname) - 1; i >= 17; i--) {
-    //    if (g_sCachedHostname[i] == ' ') {
-    //        spacepos = i;
-    //        break;
-    //    }
-    //}
-    //
-    //if (spacepos != -1) {
-    //    g_sCachedHostname[spacepos] = '\0';
-    //    String_Trim(g_sCachedHostname, g_sCachedHostname, sizeof(g_sCachedHostname), " -:.!,;");
-    //}
+    // Remove last word in hostname if it's too long
+    new spacepos = -1;
+    for (new i = strlen(g_sCachedHostname) - 1; i >= 18; i--) {
+        if (g_sCachedHostname[i] == ' ') {
+            spacepos = i;
+            break;
+        }
+    }
+
+    if (spacepos != -1) {
+        g_sCachedHostname[spacepos] = '\0';
+        String_Trim(g_sCachedHostname, g_sCachedHostname, sizeof(g_sCachedHostname), " -:.!,;");
+    }
 }
 
 AnnounceLogReady() {
@@ -407,10 +412,6 @@ public Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroadcast) 
 
 // -----------------------------------
 
-
-
-
-
 // -----------------------------------
 // Handle user input
 // -----------------------------------
@@ -440,8 +441,24 @@ public Action:Command_say(client, args) {
             }
             return Plugin_Stop;
         }
-    } else if ((!g_bDisableSS && (StrEqual(text, ".ss", false) || StrEqual(text, "!ss", false))) || StrEqual(text, ".stats", false) || StrEqual(text, "!stats", false) || StrEqual(text, ".log", false) || StrEqual(text, "!log", false) || StrEqual(text, ".logs", false) || StrEqual(text, "!logs", false)) {
-
+    }
+    // this MAY be regex'd at some point, would have to see performance benefits first
+    else if (
+                (!g_bDisableSS                          &&
+                    (
+                        StrEqual(text, ".ss", false)    ||
+                        StrEqual(text, "!ss", false)
+                    )
+                )
+            ||
+                        StrEqual(text, ".stats", false) ||
+                        StrEqual(text, "!stats", false) ||
+                        StrEqual(text, ".log", false)   ||
+                        StrEqual(text, "!log", false)   ||
+                        StrEqual(text, ".logs", false)  ||
+                        StrEqual(text, "!logs", false)
+            )
+        {
         if (strlen(g_sLastLogURL) != 0) {
             // If the person has used .ss, don't show the Partial Upload notice
             g_bPartialUploadNotice[client] = false;
