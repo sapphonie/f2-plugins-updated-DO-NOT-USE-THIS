@@ -26,6 +26,8 @@ Fixes for various tf2 comp plugins, originally made by F2
 ##### more coming soon
 
 ## Installation:
-* clone repository * drag folders into your `/tf/addons/sourcemod/` directory
+* clone repository
+* drag folders into your `/tf/addons/sourcemod/` directory
+
 ## Known bugs:
 * i don't know. i have only done light testing, but so far things seem fine
