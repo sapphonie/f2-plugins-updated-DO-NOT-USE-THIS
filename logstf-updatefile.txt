@@ -1,0 +1,19 @@
+"Updater"
+{
+	"Information"
+	{
+		"Version"
+		{
+			"Latest"	"2.3.1"
+		}
+		
+		"Notes"	"Changes in 2.3.1:"
+		"Notes"	"- Fixed server names getting truncated"
+		"Notes"	"- Updated to newest SM version / syntax"
+	}
+	
+	"Files"
+	{
+		"Plugin"	"Path_SM/plugins/logstf.smx"
+	}
+}
