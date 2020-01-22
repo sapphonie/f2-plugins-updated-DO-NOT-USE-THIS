@@ -1,19 +1,19 @@
 "Updater"
 {
-	"Information"
-	{
-		"Version"
-		{
-			"Latest"	"1.3.5"
-		}
-		
-		"Notes"	"Changes in 1.3.5:"
-		"Notes"	"- Stop log spam on healthpack pickups"
-		"Notes"	"- Updated to newest SM version / syntax"
-	}
-	
-	"Files"
-	{
-		"Plugin"	"Path_SM/plugins/medicstats.smx"
-	}
+    "Information"
+    {
+        "Version"
+        {
+            "Latest"    "1.3.5"
+        }
+
+        "Notes" "Changes in 1.3.5:"
+        "Notes" "- Stop log spam on healthpack pickups"
+        "Notes" "- Updated to newest SM version / syntax"
+    }
+
+    "Files"
+    {
+        "Plugin"    "Path_SM/plugins/medicstats.smx"
+    }
 }

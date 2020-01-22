@@ -1,19 +1,19 @@
 "Updater"
 {
-	"Information"
-	{
-		"Version"
-		{
-			"Latest"	"2.3.2"
-		}
-		
-		"Notes"	"Changes in 2.3.2:"
-		"Notes"	"- Stop log spam on healthpack pickups"
-		"Notes"	"- Updated to newest SM version / syntax"
-	}
-	
-	"Files"
-	{
-		"Plugin"	"Path_SM/plugins/supstats2.smx"
-	}
+    "Information"
+    {
+        "Version"
+        {
+            "Latest"    "2.3.2"
+        }
+
+        "Notes" "Changes in 2.3.2:"
+        "Notes" "- Stop log spam on healthpack pickups"
+        "Notes" "- Updated to newest SM version / syntax"
+    }
+
+    "Files"
+    {
+        "Plugin"    "Path_SM/plugins/supstats2.smx"
+    }
 }

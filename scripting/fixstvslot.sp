@@ -17,7 +17,7 @@ Release notes:
 #undef REQUIRE_PLUGIN
 #include <updater>
 
-#define PLUGIN_VERSION "1.0.2"
+#define PLUGIN_VERSION "1.0.3"
 #define UPDATE_URL      "https://raw.githubusercontent.com/stephanieLGBT/f2-plugins-updated/master/fixstvslot-updatefile.txt"
 
 new stvOn;
@@ -37,7 +37,7 @@ public OnPluginStart()
     {
         Updater_AddPlugin(UPDATE_URL);
     }
-    CreateTimer(10.0, checkRGL);
+    CreateTimer(2.0, checkRGL);
 }
 
 public OnLibraryAdded(const String:name[])
