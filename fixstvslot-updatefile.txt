@@ -1,0 +1,20 @@
+"Updater"
+{
+	"Information"
+	{
+		"Version"
+		{
+			"Latest"	"1.0.2"
+		}
+		
+		"Notes"	"Changes in 1.0.2:"
+		"Notes"	"- Made the plugin actually work"
+		"Notes"	"- Added check to prevent conflicts with other plugins"
+		"Notes"	"- Updated to newest SM version / syntax"
+	}
+	
+	"Files"
+	{
+		"Plugin"	"Path_SM/plugins/fixstvslot.smx"
+	}
+}

@@ -23,6 +23,10 @@ Fixes for various tf2 comp plugins, [originally made by F2](https://www.teamfort
 #### supstats2:
 * fixed log spam when picking up healthpacks
 
+#### fixstvslot:
+* actually made the plugin work lol
+* added checks to prevent conflicts with other plugins
+
 ##### more coming soon
 
 ## Installation:
