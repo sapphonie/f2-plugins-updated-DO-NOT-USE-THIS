@@ -6,7 +6,7 @@ Fixes for various tf2 comp plugins, [originally made by F2](https://www.teamfort
 
 * included newest curl extension in repository because it's annoyingly hard to find
 * cleaned up in general, converted tabs to spaces, removed xtra whitespace (will likely be restyling in the the future for better readability)
-* updated update to the one in this github
+* updated updater updatefiles to the ones in this github
 * updated to latest sourcemod syntax
 * updated stocks/incs to most recent versions
 * compiled on latest sourcemod

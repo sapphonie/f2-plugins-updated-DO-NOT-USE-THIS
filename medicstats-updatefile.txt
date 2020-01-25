@@ -4,12 +4,13 @@
     {
         "Version"
         {
-            "Latest"    "1.3.5"
+            "Latest"    "1.3.6"
         }
 
-        "Notes" "Changes in 1.3.5:"
-        "Notes" "- Stop log spam on healthpack pickups"
-        "Notes" "- Updated to newest SM version / syntax"
+        "Notes" "Changes in 1.3.6:"
+        "Notes" "- dont log healthpack pickups with warnings in console"
+        "Notes" "- Added colors to PrintToSTV"
+        "Notes" "- Hopefully updated TF2_GetMedigunName properly in f2stocks to fix 'unknown medigun' in logs"
     }
 
     "Files"
