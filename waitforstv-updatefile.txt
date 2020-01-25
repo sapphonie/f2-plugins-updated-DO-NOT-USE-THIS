@@ -4,7 +4,7 @@
     {
         "Version"
         {
-            "Latest"    "1.1.2"
+            "Latest"    "1.1.3"
         }
 
         "Notes" "Changes in 1.1.2:"
@@ -13,6 +13,7 @@
         "Notes" "- now prints in chat on game end and when STV is done broadcasting"
         "Notes" "- warns user before changing level with active stv broadcast"
         "Notes" "- unloads plugins that force map changes if not unloaded"
+        "Notes" "- unloads itself if it detects rglqol, as they conflict"
     }
 
     "Files"

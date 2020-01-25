@@ -29,6 +29,9 @@ Release notes:
 ---- 1.1.2 (21/01/2020) ---
 - fixed updatefile
 
+---- 1.1.3 (21/01/2020) ---
+- now autounloads if it detects rglqol running
+
 */
 
 #pragma semicolon 1
@@ -43,7 +46,7 @@ Release notes:
 #include <updater>
 
 
-#define PLUGIN_VERSION "1.1.2"
+#define PLUGIN_VERSION "1.1.3"
 #define UPDATE_URL     "https://raw.githubusercontent.com/stephanieLGBT/f2-plugins-updated/master/waitforstv-updatefile.txt"
 
 
@@ -76,6 +79,8 @@ public OnPluginStart()
     HookEvent("tf_game_over", GameOverEvent);
 
     RegServerCmd("changelevel", changeLvl);
+
+    CreateTimer(5.0, checkRGL);
 }
 
 public Action GameOverEvent(Handle event, const char[] name, bool dontBroadcast)
@@ -85,6 +90,22 @@ public Action GameOverEvent(Handle event, const char[] name, bool dontBroadcast)
     // this is to prevent server auto changing level
     CreateTimer(5.0, unloadMapChooserNextMapANDprinttochat, TIMER_DATA_HNDL_CLOSE | TIMER_FLAG_NO_MAPCHANGE);
 }
+
+
+public Action checkRGL(Handle:timer)
+{
+    new Handle:rgl_cast = FindConVar("rgl_cast");
+    if (rgl_cast == INVALID_HANDLE)
+    {
+        //
+    }
+    else
+    {
+        LogMessage("[WaitForSTV] RGLQoL plugin detected! Unloading to prevent conflicts.");
+        ServerCommand("sm plugins unload waitforstv");
+    }
+}
+
 
 public Action SafeToChangeLevel(Handle timer)
 {
