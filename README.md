@@ -29,6 +29,10 @@ Fixes for various tf2 comp plugins, [originally made by F2](https://www.teamfort
 * actually made the plugin work lol
 * added checks to prevent conflicts with other plugins
 
+#### waitforstv:
+* actually made the plugin work lol
+* forked off [rglqol](https://github.com/stephanieLGBT/rgl-server-resources)
+
 ##### more coming soon
 
 ## Installation:
