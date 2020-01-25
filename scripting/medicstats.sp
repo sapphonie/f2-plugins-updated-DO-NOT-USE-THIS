@@ -48,6 +48,10 @@ Release notes:
 - dont log healthpack pickups with warnings in console
 - updated for newest sourcemod
 
+---- 1.3.6 (25/01/2020) ----
+- Added colors to PrintToSTV
+- Added unique PrintToSTV if a medic drops uber
+
 
 TODO:
 - The log lines should include which medigun is wielded
@@ -69,8 +73,8 @@ Known Bugs:
 #include <updater>
 
 
-#define PLUGIN_VERSION "1.3.5"
-#define UPDATE_URL     "https://raw.githubusercontent.com/stephanieLGBT/f2-plugins-updated/master/medicstats-updatefile.txt"
+#define PLUGIN_VERSION "1.3.6"
+#define UPDATE_URL     "http://sourcemod.krus.dk/medicstats/update.txt"
 #define TIMER_TICK 0.15
 
 
@@ -268,14 +272,32 @@ public Action:Event_player_death(Handle:event, const String:name[], bool:dontBro
 
         new Float:uberPct = TF2_GetPlayerUberLevel(client, medic[team][MedicMedigun]);
 
-        if (uberPct >= 0.95)
-            PrintToSTV("[STV Stats] %s's medic died with %i%% uber", team == TFTeam_Red ? "RED" : "BLU", RoundToFloor(uberPct * 100.0));
-
+        if (uberPct == 1)
+        {
+            if (team == TFTeam_Blue)
+            {
+                CPrintToSTV("\x01[STV Stats] \x0799CCFF%s\x01's medic DROPPED!", team == TFTeam_Red ? "RED" : "BLU", RoundToFloor(uberPct * 100.0));
+            }
+            else if (team == TFTeam_Red)
+            {
+                CPrintToSTV("\x01[STV Stats] \x07FF4040%s\x01's medic DROPPED!", team == TFTeam_Red ? "RED" : "BLU", RoundToFloor(uberPct * 100.0));
+            }
+        }
+        else if (uberPct >= 0.95)
+        {
+            if (team == TFTeam_Blue)
+            {
+                CPrintToSTV("\x01[STV Stats] \x0799CCFF%s\x01's medic died with \x0799CCFF%i\x01%% uber", team == TFTeam_Red ? "RED" : "BLU", RoundToFloor(uberPct * 100.0));
+            }
+            else if (team == TFTeam_Red)
+            {
+                CPrintToSTV("\x01[STV Stats] \x07FF4040%s\x01's medic died with \x07FF4040%i\x01%% uber", team == TFTeam_Red ? "RED" : "BLU", RoundToFloor(uberPct * 100.0));
+            }
+        }
         medic[team][MedicLastDeath] = GetGameTime();
 
         LogMedicDeath(client, RoundToFloor(uberPct * 100.0));
     }
-
     return Plugin_Continue;
 }
 
@@ -307,7 +329,14 @@ public Action:Event_player_chargedeployed(Handle:event, const String:name[], boo
         }
 
         if (waitTime >= 30.0)
-            PrintToSTV("[STV Stats] %s had uber for %i seconds before using it", team == TFTeam_Red ? "RED" : "BLU", RoundToNearest(waitTime));
+            if (team == TFTeam_Blue)
+            {
+                CPrintToSTV("\x01[STV Stats] \x0799CCFF%s\x01 had uber for \x0799CCFF%i\x01 seconds before using it", team == TFTeam_Red ? "RED" : "BLU", RoundToNearest(waitTime));
+            }
+            else if (team == TFTeam_Red)
+            {
+                CPrintToSTV("\x01[STV Stats] \x07FF4040%s\x01 had uber for \x07FF4040%i\x01seconds before using it", team == TFTeam_Red ? "RED" : "BLU", RoundToNearest(waitTime));
+            }
     }
 }
 
@@ -459,14 +488,24 @@ public Action:Timer_CollectInfo(Handle:timer) {
                 }
             }
 
-            if (medic[team][MedicInitialHealSpawnTime] >= 0.0 && uberPct > 0.0) {
+            if (medic[team][MedicInitialHealSpawnTime] >= 0.0 && uberPct > 0.0)
+            {
                 // Medic has spawned, and just started healing.
 
                 new Float:timeBeforeHealing = gameTime - medic[team][MedicInitialHealSpawnTime];
                 medic[team][MedicInitialHealSpawnTime] = -1.0;
 
                 if (timeBeforeHealing >= 5.0)
-                    PrintToSTV("[STV Stats] %s spent %.1f seconds after spawning before healing", team == TFTeam_Red ? "RED" : "BLU", timeBeforeHealing);
+                    {
+                        if (team == TFTeam_Blue)
+                        {
+                            CPrintToSTV("\x01[STV Stats] \x0799CCFF%s\x01 spent \x0799CCFF%.1f\x01 seconds after spawning before healing", team == TFTeam_Red ? "RED" : "BLU", timeBeforeHealing);
+                        }
+                        else if (team == TFTeam_Red)
+                        {
+                            CPrintToSTV("\x01[STV Stats] \x07FF4040%s\x01 spent \x07FF4040%.1f\x01 seconds after spawning before healing", team == TFTeam_Red ? "RED" : "BLU", timeBeforeHealing);
+                        }
+                    }
                 LogFirstHeal(client, timeBeforeHealing);
             }
 
@@ -510,12 +549,19 @@ public Action:Timer_CollectInfo(Handle:timer) {
                 medic[team][MedicHasHadAdvantage] = false;
 
                 LogLostUberAdvantage(client, medic[team][MedicCurrentBiggestAdvantage]);
-                PrintToSTV("[STV Stats] %s lost their uber advantage (%.0f seconds)", team == TFTeam_Red ? "RED" : "BLU", medic[team][MedicCurrentBiggestAdvantage]);
+
+                if (team == TFTeam_Blue)
+                {
+                    CPrintToSTV("\x01[STV Stats] \x0799CCFF%s\x01 lost their uber advantage (\x0799CCFF%.0f\x01 seconds)", team == TFTeam_Red ? "RED" : "BLU", medic[team][MedicCurrentBiggestAdvantage]);
+                }
+                else if (team == TFTeam_Red)
+                {
+                    CPrintToSTV("\x01[STV Stats] \x07FF4040%s\x01 lost their uber advantage (\x07FF4040%.0f\x01 seconds)", team == TFTeam_Red ? "RED" : "BLU", medic[team][MedicCurrentBiggestAdvantage]);
+                }
             }
         }
 
     }
-
     return Plugin_Continue;
 }
 

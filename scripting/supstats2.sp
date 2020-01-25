@@ -66,6 +66,9 @@ Release notes:
 - dont log healthpack pickups with warnings in console
 - updated for newest sourcemod
 
+---- 2.3.3 (25/01/2020) ----
+- hopefully fixed "unknown medigun" issue by updating f2stocks
+
 
 
 TODO:
@@ -89,7 +92,7 @@ TODO:
 #undef REQUIRE_PLUGIN
 #include <updater>
 
-#define PLUGIN_VERSION "2.3.2"
+#define PLUGIN_VERSION "2.3.3"
 #define UPDATE_URL      "https://raw.githubusercontent.com/stephanieLGBT/f2-plugins-updated/master/supstats2-updatefile.txt"
 
 #define NAMELEN 64
@@ -423,25 +426,26 @@ public Event_player_chargedeployed(Handle:event, const String:name[], bool:dontB
     GetClientName(client, playerName, sizeof(playerName));
     GetClientAuthStringNew(client, playerAuth, sizeof(playerAuth), false);
     GetPlayerTeamStr(GetClientTeam(client), playerTeam, sizeof(playerTeam));
-    GetMedigunName(client, medigun, sizeof(medigun));
+    // use the fixed version in f2stocks
+    TF2_GetMedigunName(client, medigun, sizeof(medigun));
 
 
     LogToGame("\"%s<%i><%s><%s>\" triggered \"chargedeployed\" (medigun \"%s\")", playerName, userid, playerAuth, playerTeam, medigun);
 }
 
-GetMedigunName(client, String:medigun[], medigunLen) {
-    new weaponid = GetPlayerWeaponSlot(client, 1);
-    if (weaponid >= 0) {
-        new healing, bool:postHumousDamage, defid;
-        if (GetWeaponLogName(medigun, medigunLen, client, weaponid, healing, defid, postHumousDamage, client)) {
-            // We found the weapon
-        } else {
-            strcopy(medigun, medigunLen, "unknown");
-        }
-    } else {
-        strcopy(medigun, medigunLen, "");
-    }
-}
+// GetMedigunName(client, String:medigun[], medigunLen) {
+//     new weaponid = GetPlayerWeaponSlot(client, 1);
+//     if (weaponid >= 0) {
+//         new healing, bool:postHumousDamage, defid;
+//         if (GetWeaponLogName(medigun, medigunLen, client, weaponid, healing, defid, postHumousDamage, client)) {
+//             // We found the weapon
+//         } else {
+//             strcopy(medigun, medigunLen, "unknown");
+//         }
+//     } else {
+//         strcopy(medigun, medigunLen, "");
+//     }
+// }
 
 
 // Medkit pickup with healing
