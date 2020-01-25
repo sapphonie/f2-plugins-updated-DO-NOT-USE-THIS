@@ -115,16 +115,16 @@ stock TF2_GetMedigunName(client, String:medigun[], medigunLen) {
         new defid = GetEntProp(weaponid, Prop_Send, "m_iItemDefinitionIndex");
         if (
             defid == 29     ||
-        	defid == 211    ||
-        	defid == 663    ||
-        	defid == 796    ||
-        	defid == 805    ||
-        	defid == 885    ||
-        	defid == 894    ||
-        	defid == 903    ||
-        	defid == 912    ||
-        	defid == 961    ||
-        	defid == 970    ||
+            defid == 211    ||
+            defid == 663    ||
+            defid == 796    ||
+            defid == 805    ||
+            defid == 885    ||
+            defid == 894    ||
+            defid == 903    ||
+            defid == 912    ||
+            defid == 961    ||
+            defid == 970    ||
             defid == 15008  ||
             defid == 15010  ||
             defid == 15025  ||
