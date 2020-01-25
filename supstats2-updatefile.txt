@@ -7,7 +7,7 @@
             "Latest"    "2.3.3"
         }
 
-        "Notes" "Changes in 2.3.2:"
+        "Notes" "Changes in 2.3.3:"
         "Notes" "- Updated medigun type checking to include skins"
     }
 
