@@ -1,0 +1,18 @@
+"Updater"
+{
+    "Information"
+    {
+        "Version"
+        {
+            "Latest"    "1.1.3"
+        }
+
+        "Notes" "Changes in 1.1.3:"
+        "Notes" "- hopefully now zeros damage after games start (prevents soapdm dmg from showing up on tab)"
+    }
+
+    "Files"
+    {
+        "Plugin"    "Path_SM/plugins/restorescore.smx"
+    }
+}
