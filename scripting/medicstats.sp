@@ -74,7 +74,7 @@ Known Bugs:
 
 
 #define PLUGIN_VERSION "1.3.6"
-#define UPDATE_URL     "https://raw.githubusercontent.com/stephanieLGBT/f2-plugins-updated/master/scripting/medicstats.sp"
+#define UPDATE_URL     "https://raw.githubusercontent.com/stephanieLGBT/f2-plugins-updated/master/medicstats-updatefile.txt"
 #define TIMER_TICK 0.15
 
 
