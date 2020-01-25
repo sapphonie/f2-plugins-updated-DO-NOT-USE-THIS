@@ -21,6 +21,7 @@ Fixes for various tf2 comp plugins, [originally made by F2](https://www.teamfort
 ##### medicstats:
 * fixed log spam when picking up healthpacks
 * stv stats now print w/colors
+* new unique stvstat print if a medic drops with 100% uber
 
 #### supstats2:
 * fixed log spam when picking up healthpacks
