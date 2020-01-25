@@ -20,17 +20,26 @@ Fixes for various tf2 comp plugins, [originally made by F2](https://www.teamfort
 
 ##### medicstats:
 * fixed log spam when picking up healthpacks
-* stv stats now prints colors
+* stv stats now print w/colors
 
 #### supstats2:
 * fixed log spam when picking up healthpacks
+* (hopefully) fixed 'unknown medigun' error in logs
+
+###### todo: add logging airshots for classes other than soldier and demo
 
 #### fixstvslot:
 * actually made the plugin work lol
+* plugin now forcibly changes level after 10 seconds if stv is turned on (from off state)
 * added checks to prevent conflicts with other plugins
+* forked off [rglqol](https://github.com/stephanieLGBT/rgl-server-resources)
 
 #### waitforstv:
 * actually made the plugin work lol
+* No longer forcibly changes level
+* now prints in chat on game end and when STV is done broadcasting
+* warns user before changing level with active stv broadcast
+* unloads plugins that force map changes if not unloaded
 * forked off [rglqol](https://github.com/stephanieLGBT/rgl-server-resources)
 
 ##### more coming soon
