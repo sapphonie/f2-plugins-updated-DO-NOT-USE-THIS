@@ -4,12 +4,11 @@
     {
         "Version"
         {
-            "Latest"    "2.3.2"
+            "Latest"    "2.3.3"
         }
 
         "Notes" "Changes in 2.3.2:"
-        "Notes" "- Stop log spam on healthpack pickups"
-        "Notes" "- Updated to newest SM version / syntax"
+        "Notes" "- Updated medigun type checking to include skins"
     }
 
     "Files"
