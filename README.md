@@ -20,6 +20,7 @@ Fixes for various tf2 comp plugins, [originally made by F2](https://www.teamfort
 
 ##### medicstats:
 * fixed log spam when picking up healthpacks
+* stv stats now prints colors
 
 #### supstats2:
 * fixed log spam when picking up healthpacks
