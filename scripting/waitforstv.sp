@@ -32,6 +32,9 @@ Release notes:
 ---- 1.1.3 (21/01/2020) ---
 - now autounloads if it detects rglqol running
 
+---- 1.1.4 (21/01/2020) ---
+- added auto updater (not sure why this wasnt already a thing?)
+
 */
 
 #pragma semicolon 1
@@ -46,7 +49,7 @@ Release notes:
 #include <updater>
 
 
-#define PLUGIN_VERSION "1.1.3"
+#define PLUGIN_VERSION "1.1.4"
 #define UPDATE_URL     "https://raw.githubusercontent.com/stephanieLGBT/f2-plugins-updated/master/waitforstv-updatefile.txt"
 
 
@@ -67,6 +70,11 @@ public Plugin:myinfo =
 
 public OnPluginStart()
 {
+    // Set up auto updater
+    if (LibraryExists("updater"))
+    {
+        Updater_AddPlugin(UPDATE_URL);
+    }
     // hooks round start events
     HookEvent("teamplay_round_active", EventRoundActive);
 
@@ -81,6 +89,15 @@ public OnPluginStart()
     RegServerCmd("changelevel", changeLvl);
 
     CreateTimer(5.0, checkRGL);
+}
+
+public OnLibraryAdded(const String:name[])
+{
+    // Set up auto updater
+    if (StrEqual(name, "updater"))
+    {
+        Updater_AddPlugin(UPDATE_URL);
+    }
 }
 
 public Action GameOverEvent(Handle event, const char[] name, bool dontBroadcast)
