@@ -42,6 +42,9 @@ Fixes for various tf2 comp plugins, [originally made by F2](https://www.teamfort
 * unloads plugins that force map changes if not unloaded
 * forked off [rglqol](https://github.com/stephanieLGBT/rgl-server-resources)
 
+#### restorescore:
+* now zeros damage at start of teamplay start (ie a game starts), this prevents soapdm dmg from showing up on scoreboard toggle
+
 ##### more coming soon
 
 ## Installation:
