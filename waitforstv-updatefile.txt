@@ -1,0 +1,22 @@
+"Updater"
+{
+    "Information"
+    {
+        "Version"
+        {
+            "Latest"    "1.1.2"
+        }
+
+        "Notes" "Changes in 1.1.2:"
+        "Notes" "- Rewrote entire plugin (forked from rglqol)"
+        "Notes" "- No longer forcibly changes level"
+        "Notes" "- now prints in chat on game end and when STV is done broadcasting"
+        "Notes" "- warns user before changing level with active stv broadcast"
+        "Notes" "- unloads plugins that force map changes if not unloaded"
+    }
+
+    "Files"
+    {
+        "Plugin"    "Path_SM/plugins/supstats2.smx"
+    }
+}
