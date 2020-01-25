@@ -4,13 +4,11 @@
     {
         "Version"
         {
-            "Latest"    "1.0.3"
+            "Latest"    "1.0.4"
         }
 
-        "Notes" "Changes in 1.0.3:"
-        "Notes" "- Made the plugin actually work"
-        "Notes" "- Added check to prevent conflicts with other plugins"
-        "Notes" "- Updated to newest SM version / syntax"
+        "Notes" "Changes in 1.0.4:"
+        "Notes" "- Moved tv hook to OnPluginStart to catch stv enable on server start"
     }
 
     "Files"

@@ -7,6 +7,11 @@ Release notes:
 ---- 1.0.2 (21/01/2020) ----
 - Completely rewrote plugin to make the plugin actually function properly
 
+---- i forgot what i did with 1.0.3
+
+---- 1.0.4 (25/01/2020) ----
+- Moved tv hook to plugin start to catch stv being enabled on srv start
+
 */
 
 #pragma semicolon 1 // Force strict semicolon mode.
@@ -17,7 +22,7 @@ Release notes:
 #undef REQUIRE_PLUGIN
 #include <updater>
 
-#define PLUGIN_VERSION "1.0.3"
+#define PLUGIN_VERSION "1.0.4"
 #define UPDATE_URL      "https://raw.githubusercontent.com/stephanieLGBT/f2-plugins-updated/master/fixstvslot-updatefile.txt"
 
 new stvOn;
@@ -37,14 +42,18 @@ public OnPluginStart()
     {
         Updater_AddPlugin(UPDATE_URL);
     }
+    HookConVarChange(FindConVar("tv_enable"), OnSTVChanged);
     CreateTimer(2.0, checkRGL);
 }
 
 public OnLibraryAdded(const String:name[])
 {
+
     // Set up auto updater
     if (StrEqual(name, "updater"))
+    {
         Updater_AddPlugin(UPDATE_URL);
+    }
 }
 
 public Action checkRGL(Handle:timer)
@@ -52,7 +61,7 @@ public Action checkRGL(Handle:timer)
     new Handle:rgl_cast = FindConVar("rgl_cast");
     if (rgl_cast == INVALID_HANDLE)
     {
-        HookConVarChange(FindConVar("tv_enable"), OnSTVChanged);
+        //
     }
     else
     {
