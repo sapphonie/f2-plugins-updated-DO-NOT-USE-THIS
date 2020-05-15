@@ -1,5 +1,7 @@
 Fixes for various tf2 comp plugins, [originally made by F2](https://www.teamfortress.tv/13598/medicstats-sourcemod-plugin/)
 
+*note: this is unmaintained*
+
 ## Fixes:
 
 #### general fixes
