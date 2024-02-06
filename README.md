@@ -1,3 +1,7 @@
+# DO NOT USE THIS! This repository was created BEFORE F2 was actively maintaining his own plugins again, and as such LACKS CRITICAL UPDATES AND FEATURES! These will break and NOT WORK in 2024!!
+Use his repo here: https://github.com/F2/F2s-sourcemod-plugins 
+
+
 Fixes for various tf2 comp plugins, [originally made by F2](https://www.teamfortress.tv/13598/medicstats-sourcemod-plugin/)
 
 *note: this is unmaintained*
