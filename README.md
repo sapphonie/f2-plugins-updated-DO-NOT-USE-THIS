@@ -2,6 +2,18 @@
 Use his repo here: https://github.com/F2/F2s-sourcemod-plugins 
 
 
+
+
+
+
+
+
+
+
+
+
+Original readme:
+
 Fixes for various tf2 comp plugins, [originally made by F2](https://www.teamfortress.tv/13598/medicstats-sourcemod-plugin/)
 
 *note: this is unmaintained*
